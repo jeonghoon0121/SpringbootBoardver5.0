@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>boardv5home</title>
+</head>
+<body>
+    <h1>boardv5 Aprogram port8001</h1>
+
+    <form action="http://localhost:8002/boardv5/receive1" method="post">
+        <input type="hidden" name="username" value="JeongHoon">
+        <input type="hidden" name="testvalue1" value="10">
+        <input type="hidden" name="testvalue2" value="20">
+        <input type="hidden" name="testvalue3" value="30">
+        <button type="submit">8002로 post으로 정보 전송</button>
+    </form>
+
+    <h1>Redirect방식 전송</h1>
+    <form action="http://localhost:8002/boardv5/resultUrl" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">Redirect 1.URL 방식 전송</button>
+    </form>
+    <form action="http://localhost:8002/boardv5/resultFlash" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">Redirect 2.Flash 방식 전송</button>
+    </form>
+    <form action="http://localhost:8002/boardv5/resultSession" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">Redirect 3.Session 방식 전송</button>
+    </form>
+    <h1>Request방식 전송</h1>
+    <form action="http://localhost:8002/boardv5Rest/receive" method="get">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">8002로 get으로 정보 전송</button>
+    </form>
+    <form action="http://localhost:8002/boardv5Rest/receive" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">8002로 post으로 정보 전송</button>
+    </form>
+    <h1>restful 통신 </h1>
+    <button onclick="location.href='/restful/boardv5'">테스트파일</button>
+
+    <h1>Redirect방식 전송</h1>
+    <form action="http://localhost:8002/boardv5/resultUrl" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">Redirect 1.URL 방식 전송</button>
+    </form>
+    <form action="http://localhost:8002/boardv5/resultFlash" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">Redirect 2.Flash 방식 전송</button>
+    </form>
+    <form action="http://localhost:8002/boardv5/resultSession" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">Redirect 3.Session 방식 전송</button>
+    </form>
+    <h1>Request방식 전송</h1>
+    <form action="http://localhost:8002/boardv5Rest/receive" method="get">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">8002로 get으로 정보 전송</button>
+    </form>
+    <form action="http://localhost:8002/boardv5Rest/receive" method="post">
+        <input type="text" name="username" placeholder="이름 입력" required>
+        <button type="submit">8002로 post으로 정보 전송</button>
+    </form>
+
+
+    <h3>REST GET 방식</h3>
+    <input type="text" id="nameInput1" placeholder="이름을 입력하세요">
+    <button onclick="sendName1()">GET 방식 전송</button>
+
+    <h3>REST POST 방식</h3>
+    <input type="text" id="nameInput2" placeholder="이름을 입력하세요">
+    <button onclick="sendName2()">POST 방식 전송</button>
+
+    <p id="response">서버 응답이 여기에 표시됩니다.</p>
+
+    <script>
+        function sendName1() {
+            const name = document.getElementById('nameInput1').value.trim();
+            if (!name) {
+                alert("이름을 입력해주세요.");
+                return;
+            }
+
+            const url = `http://localhost:8002/restful/boardv5/user?name=${encodeURIComponent(name)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = `[GET] ${data.message}`;
+                })
+                .catch(error => {
+                    console.error('에러 발생:', error);
+                    document.getElementById('response').textContent = '요청 실패';
+                });
+        }
+
+        function sendName2() {
+            const name = document.getElementById('nameInput2').value.trim();
+            if (!name) {
+                alert("이름을 입력해주세요.");
+                return;
+            }
+
+            const url = "http://localhost:8002/restful/boardv5/user";
+            const payload = { name: name };
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = `[POST] ${data.message}`;
+                })
+                .catch(error => {
+                    console.error('에러 발생:', error);
+                    document.getElementById('response').textContent = '요청 실패';
+                });
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
