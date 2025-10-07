@@ -112,4 +112,46 @@
         FROM comment_v5
         WHERE comment_id= #{ comment_id }
     </select>
+    <insert id="addNewPost" parameterType="com.ohgiraffers.com.boardver5.BV5DTOPost">
+        INSERT INTO post_v5 (
+        board_id,
+        author_id,
+        password,
+        title,
+        content,
+        view_count,
+        ip_hash,
+        created_at,
+        updated_at
+        ) VALUES (
+        #{ boardId },
+        #{ authorId },
+        #{ password },
+        #{ title },
+        #{ content },
+        #{ viewCount },
+        #{ ipHash },
+        #{ createdAt },
+        #{ updatedAt }
+        )
+    </insert>
+    <update id="updatePost" parameterType="com.ohgiraffers.com.boardver5.BV5DTOPost">
+        UPDATE post_v5
+        SET
+        title = #{ title },
+        content = #{ content },
+        updated_at = #{ updatedAt }
+        WHERE post_id = #{ postId }
+        AND author_id = #{ authorId }
+        AND password = #{ password }
+    </update>
+    <delete id="deletePost" parameterType="com.ohgiraffers.com.boardver5.BV5DTOPost">
+        DELETE FROM post_v5
+        WHERE post_id = #{ postId }
+        AND author_id = #{ authorId }
+        AND password = #{ password }
+    </delete>
+
+
+
 </mapper>

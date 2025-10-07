@@ -22,6 +22,7 @@ public class BV5DTOPost {
     private Boolean isNotice;
     private Boolean isSecret;
 
+
     public BV5DTOPost(){}
 
     public BV5DTOPost(Integer postId, Integer boardId, String authorId, String password, String ipHash, String attachmentUrl, List<String> attachmentUrls, String title, String content, String thumbnailUrl, String accessLevel, String status, Integer viewCount, LocalDateTime createdAt, LocalDateTime updatedAt, Boolean isNotice, Boolean isSecret) {

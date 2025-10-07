@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <title>너도미사</title>
     <link rel="stylesheet" href="/css/style.css">
-
 </head>
+
+
+
 <body>
 
 
+</body>
 <header>
     <a href="/boardv5/home" class="logo" style="text-decoration: none; color: inherit;">
         미사일지
     </a>
 
-
     <nav class="menu1" style="display: flex; gap: 20px;">
-        <a href="/boardv5/home" style="color: white;">home</a>
+        <a href="/boardv5/home" style="color: white;">홈</a>
         <div th:each="board : ${boardlist}" style="display: flex; flex-direction: column;">
             <a th:href="@{'/boardv5/board/' + ${board.boardId}}"
                th:text="${board.name}"
@@ -25,29 +27,22 @@
 
     </nav>
 </header>
-
 <main id="page-content">
-    <table class="centered">
-        <tr>
-            <th>게시판이름</th>
-            <th>게시판설명</th>
-        </tr>
-        <tr th:each="board : ${ boardlist }">
-            <td>
-                <a th:href="@{'/boardv5/board/' + ${board.boardId}}" th:text="${ board.name }"></a>
-            </td>
-            <td th:text="${ board.description }"></td>
-        </tr>
-    </table>
+    <h2 th:text="${post.title}">글 제목</h2>
+    <p><strong>작성자:</strong> <span th:text="${post.authorId}">작성자</span></p>
+    <p><strong>내용:</strong></p>
+    <div th:text="${post.content}">글 내용</div>
+
+    <hr>
+    <h3>댓글</h3>
+    <ul>
+        <li th:each="comment : ${commentlist}" th:text="${comment.content}">댓글 내용</li>
+    </ul>
 </main>
-
-
-
 
 <footer id="page-footer">
     <p>&copy; 2025 JeongHoon Corp. 모든 권리 보유.</p>
 </footer>
 
 </body>
-
 </html>
