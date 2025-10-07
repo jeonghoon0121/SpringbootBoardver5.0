@@ -151,6 +151,44 @@
         AND author_id = #{ authorId }
         AND password = #{ password }
     </delete>
+    <insert id="addComment" parameterType="com.ohgiraffers.com.boardver5.BV5DTOComment">
+        INSERT INTO comment_v5 (
+        post_id,
+        author_id,
+        password,
+        content,
+        ip_hash,
+        created_at,
+        updated_at
+        ) VALUES (
+        #{postId},
+        #{authorId},
+        #{password},
+        #{content},
+        #{ipHash},
+        #{createdAt},
+        #{updatedAt}
+        )
+    </insert>
+    <update id="updateComment" parameterType="com.ohgiraffers.com.boardver5.BV5DTOComment">
+        UPDATE comment_v5
+        SET
+        content = #{content},
+        ip_hash = #{ipHash},
+        updated_at = #{updatedAt}
+        WHERE comment_id = #{commentId}
+        AND author_id = #{authorId}
+        AND password = #{password}
+    </update>
+    <delete id="deleteComment" parameterType="com.ohgiraffers.com.boardver5.BV5DTOComment">
+        DELETE FROM comment_v5
+        WHERE comment_id = #{commentId}
+        AND author_id = #{authorId}
+        AND password = #{password}
+    </delete>
+
+
+
 
 
 

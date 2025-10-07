@@ -61,6 +61,21 @@ public class BV5Service {
     public void deletePost(BV5DTOPost bv5DTOPost) {
         bv5Mapper.deletePost(bv5DTOPost);
     }
+    @Transactional
+    public void addNewComment(BV5DTOComment bv5DTOComment){
+        bv5DTOComment.setCreatedAt(java.time.LocalDateTime.now());
+        bv5DTOComment.setUpdatedAt(java.time.LocalDateTime.now());
 
+        bv5Mapper.addComment(bv5DTOComment);
+    }
+    @Transactional
+    public void updateComment(BV5DTOComment bv5DTOComment) {
+        bv5DTOComment.setUpdatedAt(java.time.LocalDateTime.now());
+        bv5Mapper.updateComment(bv5DTOComment);
+    }
+    @Transactional
+    public void deleteComment(BV5DTOComment bv5DTOComment) {
+        bv5Mapper.deleteComment(bv5DTOComment);
+    }
 }
 

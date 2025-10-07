@@ -16,4 +16,9 @@ public interface BV5Mapper {
     void addNewPost(BV5DTOPost bv5DTOPost);
     void updatePost(BV5DTOPost bv5DTOPost);
     void deletePost(BV5DTOPost bv5DTOPost);
+
+    void addComment(BV5DTOComment bv5DTOComment);
+    void updateComment(BV5DTOComment bv5DTOComment);
+    void deleteComment(BV5DTOComment bv5DTOComment);
+
 }
